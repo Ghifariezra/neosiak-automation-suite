@@ -1,8 +1,16 @@
+import os
+import time
+from dotenv import load_dotenv
 from core.singleton import SingletonMeta
 from seleniumbase import SB
 
+load_dotenv()
+
 class Driver(metaclass=SingletonMeta):
     """Singleton class untuk mengelola instance SeleniumBase."""
+
+    _os: os = os
+    _time: time = time
 
     def __init__(self):
         # Inisialisasi Context Manager
