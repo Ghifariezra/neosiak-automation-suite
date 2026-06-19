@@ -1,6 +1,1 @@
-feat: implement interactive CLI menu and enhance bot error handling
-
-- Added TerminalMenu with ASCII banners for a robust CLI interface
-- Updated main.py with infinite loops, input validation, and screen clearing
-- Added try-except blocks in LayananMahasiswaBot to prevent crashes on missing elements
-- Added comprehensive unit tests for menu interfaces using unittest.mock
+test(main): add unit test for main execution exit path
