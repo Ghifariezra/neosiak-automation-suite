@@ -8,18 +8,19 @@ Saat ini, *suite* ini berfokus pada **Layanan Mahasiswa Bot** untuk melakukan pr
 
 ## 🗺️ Roadmap (Rencana Pengembangan)
 - [x] **Layanan Mahasiswa Bot:** Otomatisasi pengisian survei evaluasi layanan kampus.
+- [x] **Interactive CLI:** Antarmuka terminal dengan ASCII Art untuk navigasi program yang mudah.
 - [x] **Unit Testing & CI/CD:** Implementasi pengujian otomatis terintegrasi dengan GitHub Actions.
 - [ ] *[Coming Soon]* Fitur otomatisasi akademik lainnya (Cek nilai, unduh KHS, dll).
 
 ---
 
-## ✨ Fitur Utama (Layanan Mahasiswa Bot)
+## ✨ Fitur Utama
 
+* **Menu Interaktif (CLI):** Dilengkapi dengan antarmuka terminal interaktif yang ramah pengguna, lengkap dengan *error handling* untuk input yang tidak valid dan transisi layar yang mulus.
 * **Bypass Deteksi Bot:** Menggunakan mode *Undetected ChromeDriver* (CDP) yang dikelola melalui pola arsitektur *Singleton* untuk performa memori yang optimal.
-* **Auto-Login Aman:** Kredensial pengguna disimpan secara aman menggunakan *Environment Variables* (`.env`).
+* **Robust Error Handling:** Mampu mendeteksi anomali di lapangan (misalnya jika survei sudah pernah diisi sebelumnya atau jaringan lambat) dan menghentikan proses dengan aman tanpa *crash*.
 * **Injeksi Native JS Super Cepat:** Navigasi antarmuka Bootstrap 5, pengisian *radio button*, dan transisi *stepper* dieksekusi murni via JavaScript di dalam DOM *browser*, menghilangkan masalah *race-condition*.
-* **Pengecekan Textarea Dinamis:** Bot secara otomatis mendeteksi form isian teks (Saran/Masukan), membedakan antara field *required* (wajib) dan *optional*.
-* **Automated Testing & CI/CD:** Dilengkapi dengan *unit test* (menggunakan `pytest` dan `unittest.mock`) yang berjalan otomatis setiap ada *push* ke repositori via GitHub Actions.
+* **Automated Testing & CI/CD:** Dilengkapi dengan cakupan *unit test* menyeluruh (menggunakan `pytest` dan `unittest.mock`) yang berjalan otomatis setiap ada *push* ke repositori via GitHub Actions.
 
 ---
 
@@ -34,15 +35,19 @@ neosiak-automation-suite/
 │   └── ps/
 │       └── run-test.ps1            # Skrip runner test untuk Windows PowerShell
 ├── src/
-│   ├── main.py                     # Entry point aplikasi
+│   ├── main.py                     # Entry point aplikasi (Menu CLI)
 │   ├── bots/
-│   │   └── layanan_mahasiswa.py    # Logika spesifik pengisian form dan navigasi
+│   │   └── layanan_mahasiswa.py    # Logika spesifik pengisian form survei
 │   ├── core/
-│   │   ├── driver.py               # Konfigurasi SeleniumBase
+│   │   ├── base_menu.py            # Abstract class (Kontrak blueprint menu)
+│   │   ├── driver.py               # Konfigurasi browser SeleniumBase
+│   │   ├── neosiak.py              # Base class bot (Logika autentikasi portal)
 │   │   └── singleton.py            # Metaclass untuk Singleton pattern
-│   └── tests/                      # Kumpulan Unit Test
-│       ├── conftest.py             # Konfigurasi format output Pytest
-│       └── ...
+│   ├── tests/                      # Kumpulan Unit Test
+│   │   ├── main_test.py            # Pengujian exit path aplikasi
+│   │   └── ...
+│   └── utils/
+│       └── display_menu.py         # Implementasi UI Terminal (ASCII Art & Input)
 ├── .env                            # Kredensial & Kustomisasi (Diabaikan oleh Git)
 ├── .env.example                    # Template environment variables
 ├── .gitignore                      # Aturan pengecualian Git

@@ -1,1 +1,1 @@
-test(main): add unit test for main execution exit path
+update(docs): add utils in folder structure and add interactive cli in roadmap
