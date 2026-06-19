@@ -59,11 +59,11 @@ Pastikan Anda telah menginstal Python 3.10+ dan browser Google Chrome terbaru di
    ```
    pip install -r requirements.txt
    ```
-3. Konfigurasi Kredensial (.env) Bot ini membutuhkan NIM dan Password portal akademik untuk dapat beroperasi. Data ini disimpan secara lokal.
+3. Konfigurasi Kredensial (.env) Bot ini membutuhkan NIM atau Email dan Password portal akademik untuk dapat beroperasi. Data ini disimpan secara lokal.
     - Buat salinan dari file `.env.example` dan ubah namanya menjadi `.env.`
     - Buka file `.env` dan masukkan data Anda tanpa tanda kutip ekstra:
     ```
-    NIM=452421XXXX
+    NIM_OR_EMAIL=452421XXXX
     PASSWORD=password_rahasia_anda
     ```
 
