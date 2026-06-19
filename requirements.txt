@@ -1,3 +1,5 @@
 seleniumbase
 webdriver-manager
 python-dotenv
+pytest
+pytest-testdox

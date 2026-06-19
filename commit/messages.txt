@@ -1,1 +1,7 @@
-update(docs): formatting
+feat: setup unit testing, github actions CI, and project documentation
+
+- Added .env.example and configured .gitignore for security
+- Updated README.md to reflect the new Neosiak Automation Suite branding
+- Implemented unit tests using pytest and unittest.mock for Driver and LayananMahasiswaBot
+- Configured conftest.py for custom descriptive test outputs
+- Added test.yml for GitHub Actions CI/CD pipeline integration
