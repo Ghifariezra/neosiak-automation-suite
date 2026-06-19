@@ -1,0 +1,3 @@
+seleniumbase
+webdriver-manager
+python-dotenv

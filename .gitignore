@@ -1,0 +1,32 @@
+# =========================
+# 1. Kredensial & Rahasia (SANGAT PENTING)
+# =========================
+.env
+!.env.*
+
+# =========================
+# 2. Virtual Environment
+# =========================
+venv/
+env/
+
+# =========================
+# 3. Python Cache & Compiled Files
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# =========================
+# 4. Folder Output / Dinamis
+# =========================
+downloaded_files/
+*.log
+
+# =========================
+# 5. OS Generated Files
+# =========================
+.DS_Store
+Thumbs.db
