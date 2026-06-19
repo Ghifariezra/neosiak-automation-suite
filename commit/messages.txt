@@ -1,1 +1,1 @@
-update(docs): add utils in folder structure and add interactive cli in roadmap
+update(main): selection of the menu has been updated

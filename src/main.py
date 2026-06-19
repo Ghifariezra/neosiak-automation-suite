@@ -46,10 +46,14 @@ def main():
                         "\n[Bot Selesai. Tekan Enter untuk kembali ke menu alat...]")
 
                 elif pilihan_alat == 2:
+                    print("\n[INFO] Tool akan segera tersedia. Harap bersabar.")
+                    input("[Tekan Enter untuk kembali...]")
+                
+                elif pilihan_alat == 3:
                     print("\n[INFO] Tool lain belum tersedia.")
                     input("[Tekan Enter untuk kembali...]")
 
-                elif pilihan_alat == 3:
+                elif pilihan_alat == 4:
                     # Keluar dari sub-menu dan kembali ke menu utama
                     break
 
