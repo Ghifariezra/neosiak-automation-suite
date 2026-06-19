@@ -63,7 +63,7 @@ Pastikan Anda telah menginstal Python 3.10+ dan browser Google Chrome terbaru di
     - Buat salinan dari file `.env.example` dan ubah namanya menjadi `.env.`
     - Buka file `.env` dan masukkan data Anda tanpa tanda kutip ekstra:
     ```
-    NIM_OR_EMAIL=452421XXXX
+    NIM_OR_EMAIL=45XXXXXXXX
     PASSWORD=password_rahasia_anda
     ```
 

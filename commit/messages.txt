@@ -1,1 +1,1 @@
-update(docs): change params within file .env
+update(docs): change value
