@@ -75,7 +75,9 @@ Setelah semua konfigurasi selesai, jalankan skrip utama dari direktori root (pas
 python src/main.py
 ```
 
-Kustomisasi Jawaban: Secara bawaan (default), bot akan mengisi form dengan pilihan "Sangat Setuju" dan mengisi textarea (jika wajib) dengan teks "Pelayanan perpustakaan dan akademik sudah sangat memuaskan.". Anda dapat mengubah nilai ini di dalam pemanggilan fungsi bot.answer_questions() pada file src/main.py.
+Kustomisasi Jawaban: 
+- Secara bawaan (default), bot akan mengisi form dengan pilihan `"Sangat Setuju"` dan mengisi textarea `(jika wajib)` dengan teks "Pelayanan perpustakaan dan akademik sudah sangat memuaskan.". 
+- Anda dapat mengubah nilai ini di dalam pemanggilan fungsi `bot.answer_questions()` pada file `src/main.py.`
 
 --- 
 
