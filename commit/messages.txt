@@ -1,7 +1,6 @@
-refactor: implement NeosiakBot base class and encapsulate execution flow
+feat: implement interactive CLI menu and enhance bot error handling
 
-- Created NeosiakBot base class to handle global portal authentication
-- Refactored LayananMahasiswaBot to inherit from NeosiakBot
-- Encapsulated step-by-step execution logic into a new run() method
-- Cleaned up main.py to act strictly as an entry point
-- Updated unit tests to mock time.sleep and reflect the new class hierarchy
+- Added TerminalMenu with ASCII banners for a robust CLI interface
+- Updated main.py with infinite loops, input validation, and screen clearing
+- Added try-except blocks in LayananMahasiswaBot to prevent crashes on missing elements
+- Added comprehensive unit tests for menu interfaces using unittest.mock

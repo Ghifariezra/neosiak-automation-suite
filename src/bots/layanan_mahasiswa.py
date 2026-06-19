@@ -156,8 +156,15 @@ class LayananMahasiswaBot(NeosiakBot):
         self.login()
         self._time.sleep(2)
 
-        self.go_to_fill_survey()
-        self._time.sleep(2)
+        try:
+            self.go_to_fill_survey()
+            self._time.sleep(2)
+        except Exception as e:
+            print(f"[ERROR] Terjadi kesalahan: {e}")
+            
+            print("[INFO] Menutup browser...")
+            self.quit()
+            return
 
         stepper_info = self.get_stepper_info()
         total_stepper = stepper_info['total']
