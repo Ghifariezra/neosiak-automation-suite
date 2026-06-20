@@ -2,12 +2,13 @@
 
 Kumpulan skrip otomatisasi (RPA) berbasis Python dan **SeleniumBase** untuk menyederhanakan akses dan eksekusi tugas pada portal akademik Neosiak Universitas Pancasila. 
 
-Saat ini, *suite* ini berfokus pada **Layanan Mahasiswa Bot** untuk melakukan proses *login* dan pengisian survei evaluasi secara otomatis.
+Saat ini, *suite* ini mendukung otomatisasi multi-bot yang dapat diakses langsung melalui antarmuka terminal interaktif.
 
 ---
 
 ## 🗺️ Roadmap (Rencana Pengembangan)
 - [x] **Layanan Mahasiswa Bot:** Otomatisasi pengisian survei evaluasi layanan kampus.
+- [x] **Pengisian KRS Bot:** Otomatisasi pengecekan status jadwal dan navigasi menu pengisian KRS.
 - [x] **Interactive CLI:** Antarmuka terminal dengan ASCII Art untuk navigasi program yang mudah.
 - [x] **Unit Testing & CI/CD:** Implementasi pengujian otomatis terintegrasi dengan GitHub Actions.
 - [ ] *[Coming Soon]* Fitur otomatisasi akademik lainnya (Cek nilai, unduh KHS, dll).
@@ -16,11 +17,11 @@ Saat ini, *suite* ini berfokus pada **Layanan Mahasiswa Bot** untuk melakukan pr
 
 ## ✨ Fitur Utama
 
-* **Menu Interaktif (CLI):** Dilengkapi dengan antarmuka terminal interaktif yang ramah pengguna, lengkap dengan *error handling* untuk input yang tidak valid dan transisi layar yang mulus.
-* **Bypass Deteksi Bot:** Menggunakan mode *Undetected ChromeDriver* (CDP) yang dikelola melalui pola arsitektur *Singleton* untuk performa memori yang optimal.
-* **Robust Error Handling:** Mampu mendeteksi anomali di lapangan (misalnya jika survei sudah pernah diisi sebelumnya atau jaringan lambat) dan menghentikan proses dengan aman tanpa *crash*.
-* **Injeksi Native JS Super Cepat:** Navigasi antarmuka Bootstrap 5, pengisian *radio button*, dan transisi *stepper* dieksekusi murni via JavaScript di dalam DOM *browser*, menghilangkan masalah *race-condition*.
-* **Automated Testing & CI/CD:** Dilengkapi dengan cakupan *unit test* menyeluruh (menggunakan `pytest` dan `unittest.mock`) yang berjalan otomatis setiap ada *push* ke repositori via GitHub Actions.
+* **Menu Interaktif (CLI):** Antarmuka terminal interaktif yang ramah pengguna, lengkap dengan *error handling* untuk input yang tidak valid, validasi tipe data, dan transisi layar yang mulus.
+* **Bypass Deteksi Bot:** Menggunakan mode *Undetected ChromeDriver* (UC Mode) yang dikelola melalui pola arsitektur *Singleton* untuk performa memori dan manajemen *instance* browser yang optimal.
+* **Injeksi UI & Efek Blur Modern:** Menggunakan manipulasi DOM via JavaScript asinkron untuk menyuntikkan *custom overlay* dengan efek latar belakang blur (`backdrop-filter`) serta *centered alert toast* berwarna merah elegan untuk memberikan *feedback* visual langsung di peramban ketika mendeteksi anomali (seperti saat akses KRS ditutup).
+* **Injeksi Native JS Super Cepat:** Navigasi antarmuka Bootstrap 5, pengisian *radio button*, dan transisi *stepper* dieksekusi murni via JavaScript di dalam DOM *browser*, menghilangkan masalah *race-condition* akibat jaringan lambat.
+* **Automated Testing & CI/CD:** Dilengkapi dengan cakupan *unit test* menyeluruh (menggunakan `pytest` dan `unittest.mock`) yang memisahkan pengujian alur kerja bot (*stepper flow*) dengan fungsionalitas inti *core* (seperti injeksi skrip visual). Berjalan otomatis setiap ada aktivitas *push* ke repositori via GitHub Actions.
 
 ---
 
@@ -35,19 +36,30 @@ neosiak-automation-suite/
 │   └── ps/
 │       └── run-test.ps1            # Skrip runner test untuk Windows PowerShell
 ├── src/
-│   ├── main.py                     # Entry point aplikasi (Menu CLI)
+│   ├── main.py                     # Entry point aplikasi (Menu CLI Utama & Sub-menu)
 │   ├── bots/
-│   │   └── layanan_mahasiswa.py    # Logika spesifik pengisian form survei
+│   │   ├── layanan_mahasiswa.py    # Logika spesifik pengisian form survei layanan
+│   │   └── pengisian_krs.py        # Logika spesifik alur eksekusi pengisian KRS
 │   ├── core/
 │   │   ├── base_menu.py            # Abstract class (Kontrak blueprint menu)
 │   │   ├── driver.py               # Konfigurasi browser SeleniumBase
-│   │   ├── neosiak.py              # Base class bot (Logika autentikasi portal)
+│   │   ├── neosiak.py              # Base class bot (Autentikasi & open_sidebar dengan injeksi UI)
 │   │   └── singleton.py            # Metaclass untuk Singleton pattern
-│   ├── tests/                      # Kumpulan Unit Test
+│   ├── tests/                      # Kumpulan Unit Test (Mock Testing)
+│   │   ├── bots/
+│   │   │   ├── layanan_mahasiswa_test.py # Test otomatisasi stepper survei
+│   │   │   └── pengisian_krs_test.py     # Test alur sekuensial PengisianKRSBot
+│   │   ├── core/
+│   │   │   ├── base_menu_test.py
+│   │   │   ├── driver_test.py
+│   │   │   ├── neosiak_test.py     # Test mekanisme login & injeksi JS (Toast/Overlay)
+│   │   │   └── singleton_test.py
+│   │   ├── utils/
+│   │   │   └── display_menu_test.py
 │   │   ├── main_test.py            # Pengujian exit path aplikasi
-│   │   └── ...
+│   │   └── conftest.py
 │   └── utils/
-│       └── display_menu.py         # Implementasi UI Terminal (ASCII Art & Input)
+│       └── display_menu.py         # Implementasi UI Terminal (ASCII Art & Input Handler)
 ├── .env                            # Kredensial & Kustomisasi (Diabaikan oleh Git)
 ├── .env.example                    # Template environment variables
 ├── .gitignore                      # Aturan pengecualian Git

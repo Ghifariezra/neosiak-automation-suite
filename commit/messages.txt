@@ -1,1 +1,7 @@
-update(main): selection of the menu has been updated
+feat: implement PengisianKRSBot and UI toast notifications
+
+- Menambahkan PengisianKRSBot beserta unit test terkait.
+- Memindahkan dan mengubah logika `open_sidebar` ke dalam class NeosiakBot (core) agar lebih dinamis.
+- Menambahkan injeksi UI (overlay & toast) menggunakan JavaScript untuk menangani alert saat menu ditutup.
+- Mengintegrasikan PengisianKRSBot ke dalam menu terminal utama dan menghapus label "[Coming Soon]".
+- Menambahkan unit test baru di neosiak_test.py untuk menguji injeksi JS pada UI.

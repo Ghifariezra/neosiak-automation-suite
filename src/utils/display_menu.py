@@ -1,6 +1,7 @@
 import os
 from core.base_menu import BaseMenu
 
+
 class TerminalMenu(BaseMenu):
     """
     Ini adalah class nyata yang mewarisi kontrak dari BaseMenu.
@@ -25,7 +26,7 @@ class TerminalMenu(BaseMenu):
         print("=== Main Menu ===")
         print("1. Start Bot")
         print("2. Exit")
-        
+
     def display_tools(self):
         banner_tools = r"""
   _____ ___   ___  _     ____  
@@ -37,12 +38,12 @@ class TerminalMenu(BaseMenu):
         print(banner_tools)
         print("=== Automation Tools ===")
         print("1. Layanan Mahasiswa Bot")
-        print("2. Pengisian KRS [Coming Soon]")
+        print("2. Pengisian KRS Bot")
         print("3. Tool Lainnya")
         print("4. Back to Main Menu")
 
     def handle_input(self, list_menu):
         return input(f"Masukkan pilihan (1-{len(list_menu)}): ").strip()
-    
+
     def clear_screen(self):
         os.system('cls' if os.name == 'nt' else 'clear')
