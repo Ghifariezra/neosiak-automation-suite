@@ -2,7 +2,7 @@
 
 Kumpulan skrip otomatisasi (RPA) berbasis Python dan **SeleniumBase** untuk menyederhanakan akses dan eksekusi tugas pada portal akademik Neosiak Universitas Pancasila.
 
-Saat ini, *suite* ini mendukung otomatisasi multi-bot yang dapat diakses langsung melalui antarmuka terminal interaktif, termasuk layanan mahasiswa, pengisian KRS, dan pencarian/unduh soal UAS. Proyek ini dikelola melalui `pyproject.toml` dan modul utamanya berada di folder `src/`, dengan entry point utama di `main.py` pada root repository.
+Saat ini, *suite* ini mendukung otomatisasi multi-bot yang dapat diakses langsung melalui antarmuka terminal interaktif, termasuk layanan mahasiswa, pengisian KRS, dan pencarian/unduh soal UAS. Proyek ini dikelola melalui `pyproject.toml` dan modul utamanya berada di folder `src/`, dengan entry point utama di `main.py` pada root repository. Panduan penggunaan yang lebih lengkap tersedia di [docs/HOW-TO-USE.md](docs/HOW-TO-USE.md).
 
 ---
 
@@ -53,6 +53,7 @@ neosiak-automation-suite/
 │       ├── __init__.py
 │       └── display_menu.py         # Implementasi UI Terminal (ASCII Art & Input Handler)
 ├── tests/                          # Kumpulan Unit Test (Mock Testing)
+│   ├── __init__.py
 │   ├── bots/
 │   │   ├── absen_uas_test.py
 │   │   ├── layanan_mahasiswa_test.py
@@ -117,6 +118,13 @@ TEKS_SARAN="Pelayanan perpustakaan dan akademik sudah sangat memuaskan."
 Setelah semua konfigurasi selesai, jalankan skrip utama dari direktori root (pastikan virtual environment masih aktif).
 ```bash
 python main.py
+```
+
+Untuk panduan penggunaan yang lebih lengkap, lihat [docs/HOW-TO-USE.md](docs/HOW-TO-USE.md).
+
+Jika Anda ingin memakai bot sebagai library di proyek lain, impor langsung dari paket `src`.
+```python
+from src.bots import AbsenUASBot, LayananMahasiswaBot, PengisianKRSBot
 ```
 
 Kustomisasi Jawaban Survei:

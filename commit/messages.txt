@@ -1,7 +1,5 @@
-refactor: migrate to standard Python src-layout and pyproject.toml packaging
+docs: update README with detailed usage guide link and library import example
 
-- Memindahkan `main.py` ke root directory sebagai entry point aplikasi.
-- Memisahkan direktori `tests` keluar dari `src` untuk mencegah kode pengujian ikut terdistribusi dalam package.
-- Mengubah seluruh pola import internal menjadi absolute import menggunakan namespace `src.`
-- Menambahkan `pyproject.toml` untuk mengonversi proyek menjadi editable library dan menghapus `requirements.txt`.
-- Memperbarui skrip `run-test.ps1` karena `PYTHONPATH` manual sudah tidak diperlukan lagi.
+- Added a reference link pointing to docs/HOW-TO-USE.md.
+- Included a quick python snippet showing how to import bots as a package.
+- Minor fix on directory tree structure to include tests/__init__.py.
