@@ -1,13 +1,15 @@
 import os
 import time
 from dotenv import load_dotenv
-from core.singleton import SingletonMeta
+# Hapus import SingletonMeta
+# from core.singleton import SingletonMeta
 from seleniumbase import SB
 
 load_dotenv()
 
-class Driver(metaclass=SingletonMeta):
-    """Singleton class untuk mengelola instance SeleniumBase."""
+# Hapus (metaclass=SingletonMeta) dari deklarasi class
+class Driver:
+    """Class untuk mengelola instance SeleniumBase (Tanpa Singleton)."""
 
     _os: os = os
     _time: time = time

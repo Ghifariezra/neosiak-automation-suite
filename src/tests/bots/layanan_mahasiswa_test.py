@@ -1,14 +1,8 @@
 import unittest
 from unittest.mock import patch, MagicMock
 from bots.layanan_mahasiswa import LayananMahasiswaBot
-from core.driver import Driver
-
 
 class TestLayananMahasiswaBot(unittest.TestCase):
-    def setUp(self):
-        """Reset instance Singleton."""
-        Driver._instances = {}
-
     @patch('core.driver.SB')
     # Memblokir time.sleep agar tes berjalan tanpa henti (instan)
     @patch('time.sleep')

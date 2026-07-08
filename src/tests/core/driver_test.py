@@ -4,9 +4,7 @@ from core.driver import Driver
 
 
 class TestDriver(unittest.TestCase):
-    def setUp(self):
-        """Reset instance Singleton."""
-        Driver._instances = {}
+    # def setUp(self) Dihapus karena class Driver tidak lagi menggunakan Singleton
 
     @patch('core.driver.SB')
     def test_driver_initialization(self, mock_sb_class):

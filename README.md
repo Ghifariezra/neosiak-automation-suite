@@ -1,14 +1,15 @@
 # Neosiak Automation Suite 🤖🎓
 
-Kumpulan skrip otomatisasi (RPA) berbasis Python dan **SeleniumBase** untuk menyederhanakan akses dan eksekusi tugas pada portal akademik Neosiak Universitas Pancasila. 
+Kumpulan skrip otomatisasi (RPA) berbasis Python dan **SeleniumBase** untuk menyederhanakan akses dan eksekusi tugas pada portal akademik Neosiak Universitas Pancasila.
 
-Saat ini, *suite* ini mendukung otomatisasi multi-bot yang dapat diakses langsung melalui antarmuka terminal interaktif.
+Saat ini, *suite* ini mendukung otomatisasi multi-bot yang dapat diakses langsung melalui antarmuka terminal interaktif, termasuk layanan mahasiswa, pengisian KRS, dan pencarian/unduh soal UAS.
 
 ---
 
 ## 🗺️ Roadmap (Rencana Pengembangan)
 - [x] **Layanan Mahasiswa Bot:** Otomatisasi pengisian survei evaluasi layanan kampus.
 - [x] **Pengisian KRS Bot:** Otomatisasi pengecekan status jadwal dan navigasi menu pengisian KRS.
+- [x] **Absen UAS Bot:** Otomatisasi pencarian mata kuliah dan unduh file soal UAS dari tabel portal.
 - [x] **Interactive CLI:** Antarmuka terminal dengan ASCII Art untuk navigasi program yang mudah.
 - [x] **Unit Testing & CI/CD:** Implementasi pengujian otomatis terintegrasi dengan GitHub Actions.
 - [ ] *[Coming Soon]* Fitur otomatisasi akademik lainnya (Cek nilai, unduh KHS, dll).
@@ -18,10 +19,10 @@ Saat ini, *suite* ini mendukung otomatisasi multi-bot yang dapat diakses langsun
 ## ✨ Fitur Utama
 
 * **Menu Interaktif (CLI):** Antarmuka terminal interaktif yang ramah pengguna, lengkap dengan *error handling* untuk input yang tidak valid, validasi tipe data, dan transisi layar yang mulus.
-* **Bypass Deteksi Bot:** Menggunakan mode *Undetected ChromeDriver* (UC Mode) yang dikelola melalui pola arsitektur *Singleton* untuk performa memori dan manajemen *instance* browser yang optimal.
+* **Bypass Deteksi Bot:** Menggunakan mode *Undetected ChromeDriver* (UC Mode) yang dikelola langsung pada layer driver untuk menjaga konsistensi sesi browser.
 * **Injeksi UI & Efek Blur Modern:** Menggunakan manipulasi DOM via JavaScript asinkron untuk menyuntikkan *custom overlay* dengan efek latar belakang blur (`backdrop-filter`) serta *centered alert toast* berwarna merah elegan untuk memberikan *feedback* visual langsung di peramban ketika mendeteksi anomali (seperti saat akses KRS ditutup).
-* **Injeksi Native JS Super Cepat:** Navigasi antarmuka Bootstrap 5, pengisian *radio button*, dan transisi *stepper* dieksekusi murni via JavaScript di dalam DOM *browser*, menghilangkan masalah *race-condition* akibat jaringan lambat.
-* **Automated Testing & CI/CD:** Dilengkapi dengan cakupan *unit test* menyeluruh (menggunakan `pytest` dan `unittest.mock`) yang memisahkan pengujian alur kerja bot (*stepper flow*) dengan fungsionalitas inti *core* (seperti injeksi skrip visual). Berjalan otomatis setiap ada aktivitas *push* ke repositori via GitHub Actions.
+* **Injeksi Native JS Super Cepat:** Navigasi antarmuka Bootstrap 5, pengisian *radio button*, transisi *stepper*, dan interaksi tabel UAS dieksekusi murni via JavaScript di dalam DOM *browser*, menghilangkan masalah *race-condition* akibat jaringan lambat.
+* **Automated Testing & CI/CD:** Dilengkapi dengan cakupan *unit test* menyeluruh (menggunakan `pytest` dan `unittest.mock`) yang memisahkan pengujian alur kerja bot survei, KRS, UAS, dan fungsionalitas inti *core* seperti login serta injeksi skrip visual. Berjalan otomatis setiap ada aktivitas *push* ke repositori via GitHub Actions.
 
 ---
 
@@ -38,6 +39,7 @@ neosiak-automation-suite/
 ├── src/
 │   ├── main.py                     # Entry point aplikasi (Menu CLI Utama & Sub-menu)
 │   ├── bots/
+│   │   ├── absen_uas.py            # Bot pencarian mata kuliah dan unduh soal UAS
 │   │   ├── layanan_mahasiswa.py    # Logika spesifik pengisian form survei layanan
 │   │   └── pengisian_krs.py        # Logika spesifik alur eksekusi pengisian KRS
 │   ├── core/
@@ -47,6 +49,7 @@ neosiak-automation-suite/
 │   │   └── singleton.py            # Metaclass untuk Singleton pattern
 │   ├── tests/                      # Kumpulan Unit Test (Mock Testing)
 │   │   ├── bots/
+│   │   │   ├── absen_uas_test.py    # Test pencarian tabel, unduh file, dan alur input UAS
 │   │   │   ├── layanan_mahasiswa_test.py # Test otomatisasi stepper survei
 │   │   │   └── pengisian_krs_test.py     # Test alur sekuensial PengisianKRSBot
 │   │   ├── core/
@@ -87,7 +90,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 3. Konfigurasi Kredensial (.env) Bot ini membutuhkan NIM atau Email dan Password portal akademik untuk dapat beroperasi. Data ini disimpan secara lokal.
-    - Buat salinan dari file `.env.example` dan ubah namanya menjadi `.env.`
+    - Buat salinan dari file `.env.example` dan ubah namanya menjadi `.env`.
     - Buka file `.env` dan masukkan data Anda tanpa tanda kutip ekstra:
 ```
 NIM_OR_EMAIL=45XXXXXXXX
@@ -106,9 +109,14 @@ Setelah semua konfigurasi selesai, jalankan skrip utama dari direktori root (pas
 python src/main.py
 ```
 
-Kustomisasi Jawaban: 
-- Secara bawaan (default), bot akan mengisi form dengan pilihan `"Sangat Setuju"` dan mengisi textarea `(jika wajib)` dengan teks "Pelayanan perpustakaan dan akademik sudah sangat memuaskan.". 
-- Anda dapat mengubah nilai ini di dalam pemanggilan fungsi `bot.answer_questions()` pada file `src/main.py.`
+Kustomisasi Jawaban Survei:
+- Secara bawaan (default), bot akan mengisi form dengan pilihan `"Sangat Setuju"` dan mengisi textarea `(jika wajib)` dengan teks "Pelayanan sudah sangat baik, terima kasih.".
+- Anda dapat mengubah nilainya melalui variabel environment `PILIHAN_JAWABAN` dan `TEKS_SARAN` di file `.env`.
+
+Menu bot yang tersedia saat ini:
+- `Layanan Mahasiswa Bot` untuk survei evaluasi layanan.
+- `Pengisian KRS Bot` untuk masuk ke alur pengisian KRS dan menangani kondisi jadwal yang ditutup.
+- `Absen UAS Bot` untuk mencari mata kuliah pada tabel soal UAS, membaca jam mulai, lalu membuka file unduhan bila tersedia.
 
 ## 🧪 Menjalankan Unit Test
 Proyek ini dilengkapi dengan mock testing untuk memverifikasi logika tanpa harus membuka browser. Anda dapat menjalankan tes secara lokal menggunakan skrip yang telah disediakan:

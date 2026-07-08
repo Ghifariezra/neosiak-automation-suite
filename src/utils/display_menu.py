@@ -39,8 +39,9 @@ class TerminalMenu(BaseMenu):
         print("=== Automation Tools ===")
         print("1. Layanan Mahasiswa Bot")
         print("2. Pengisian KRS Bot")
-        print("3. Tool Lainnya")
-        print("4. Back to Main Menu")
+        print("3. Absen UAS Bot")
+        print("4. Tool Lainnya")
+        print("5. Back to Main Menu")
 
     def handle_input(self, list_menu):
         return input(f"Masukkan pilihan (1-{len(list_menu)}): ").strip()

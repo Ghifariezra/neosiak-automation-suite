@@ -1,14 +1,9 @@
 import unittest
 from unittest.mock import patch, MagicMock
 from bots.pengisian_krs import PengisianKRSBot
-from core.driver import Driver
 
 
 class TestPengisianKRSBot(unittest.TestCase):
-    def setUp(self):
-        """Reset instance Singleton."""
-        Driver._instances = {}
-
     @patch('core.driver.SB')
     @patch('time.sleep')
     def test_run_executes_correct_sequence(self, mock_sleep, mock_sb):

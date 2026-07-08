@@ -1,13 +1,8 @@
 import unittest
 from unittest.mock import patch, MagicMock
 from core.neosiak import NeosiakBot
-from core.driver import Driver
 
 class TestNeosiakBot(unittest.TestCase):
-    def setUp(self):
-        """Reset instance Singleton."""
-        Driver._instances = {}
-
     @patch('core.driver.SB')
     def test_login_uses_environment_variables(self, mock_sb):
         """Memastikan login mengetikkan kredensial dengan benar menggunakan selector."""

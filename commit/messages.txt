@@ -1,7 +1,8 @@
-feat: implement PengisianKRSBot and UI toast notifications
+feat: add AbsenUASBot, refactor Driver architecture, and fix sidebar logic
 
-- Menambahkan PengisianKRSBot beserta unit test terkait.
-- Memindahkan dan mengubah logika `open_sidebar` ke dalam class NeosiakBot (core) agar lebih dinamis.
-- Menambahkan injeksi UI (overlay & toast) menggunakan JavaScript untuk menangani alert saat menu ditutup.
-- Mengintegrasikan PengisianKRSBot ke dalam menu terminal utama dan menghapus label "[Coming Soon]".
-- Menambahkan unit test baru di neosiak_test.py untuk menguji injeksi JS pada UI.
+- Menambahkan `AbsenUASBot` untuk otomatisasi unduh soal UAS beserta file unit test-nya.
+- Menghapus arsitektur Singleton dari class `Driver` untuk menyelesaikan bug crash saat melakukan *rerun* bot dari menu utama CLI.
+- Membersihkan metode reset instance Singleton (`setUp`) dari seluruh file testing.
+- Mengisolasi logika injeksi overlay "KRS Ditutup" pada metode `open_sidebar` agar hanya tereksekusi saat membuka menu KRS.
+- Memperbarui antarmuka terminal (`main.py` & `display_menu.py`) untuk mengakomodasi eksekusi bot baru.
+- Memperbarui status roadmap pada README.md.

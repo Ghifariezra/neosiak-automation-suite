@@ -1,6 +1,7 @@
 from bots.layanan_mahasiswa import LayananMahasiswaBot
 from bots.pengisian_krs import PengisianKRSBot
 from utils.display_menu import TerminalMenu
+from bots.absen_uas import AbsenUASBot
 
 
 def main():
@@ -55,10 +56,18 @@ def main():
                     input("\n[Selesai. Tekan Enter untuk kembali...]")
                 
                 elif pilihan_alat == 3:
+                    menu.clear_screen()
+                    print("[INFO] Memulai AbsenUASBot...\n")
+                    bot = AbsenUASBot()
+                    bot.run()
+                    
+                    input("\n[Selesai. Tekan Enter untuk kembali...]")
+                
+                elif pilihan_alat == 4:
                     print("\n[INFO] Tool lain belum tersedia.")
                     input("[Tekan Enter untuk kembali...]")
 
-                elif pilihan_alat == 4:
+                elif pilihan_alat == 5:
                     # Keluar dari sub-menu dan kembali ke menu utama
                     break
 
