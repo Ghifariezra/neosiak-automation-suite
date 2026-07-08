@@ -1,4 +1,4 @@
-from core.neosiak import NeosiakBot
+from src.core import NeosiakBot
 
 class PengisianKRSBot(NeosiakBot):
     """Bot untuk mengotomatisasi pengisian KRS di portal Neosiak."""

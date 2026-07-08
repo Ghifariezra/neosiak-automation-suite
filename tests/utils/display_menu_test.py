@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch
-from utils.display_menu import TerminalMenu
+from src.utils.display_menu import TerminalMenu
 
 
 class TestTerminalMenu(unittest.TestCase):

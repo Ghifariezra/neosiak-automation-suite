@@ -1,4 +1,4 @@
-from core.driver import Driver
+from src.core.driver import Driver
 
 
 class NeosiakBot(Driver):

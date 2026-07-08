@@ -1,8 +1,7 @@
-feat: add AbsenUASBot, refactor Driver architecture, and fix sidebar logic
+refactor: migrate to standard Python src-layout and pyproject.toml packaging
 
-- Menambahkan `AbsenUASBot` untuk otomatisasi unduh soal UAS beserta file unit test-nya.
-- Menghapus arsitektur Singleton dari class `Driver` untuk menyelesaikan bug crash saat melakukan *rerun* bot dari menu utama CLI.
-- Membersihkan metode reset instance Singleton (`setUp`) dari seluruh file testing.
-- Mengisolasi logika injeksi overlay "KRS Ditutup" pada metode `open_sidebar` agar hanya tereksekusi saat membuka menu KRS.
-- Memperbarui antarmuka terminal (`main.py` & `display_menu.py`) untuk mengakomodasi eksekusi bot baru.
-- Memperbarui status roadmap pada README.md.
+- Memindahkan `main.py` ke root directory sebagai entry point aplikasi.
+- Memisahkan direktori `tests` keluar dari `src` untuk mencegah kode pengujian ikut terdistribusi dalam package.
+- Mengubah seluruh pola import internal menjadi absolute import menggunakan namespace `src.`
+- Menambahkan `pyproject.toml` untuk mengonversi proyek menjadi editable library dan menghapus `requirements.txt`.
+- Memperbarui skrip `run-test.ps1` karena `PYTHONPATH` manual sudah tidak diperlukan lagi.

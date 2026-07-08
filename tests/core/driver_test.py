@@ -1,12 +1,12 @@
 import unittest
 from unittest.mock import patch, MagicMock
-from core.driver import Driver
+from src.core.driver import Driver
 
 
 class TestDriver(unittest.TestCase):
     # def setUp(self) Dihapus karena class Driver tidak lagi menggunakan Singleton
 
-    @patch('core.driver.SB')
+    @patch('src.core.driver.SB')
     def test_driver_initialization(self, mock_sb_class):
         """Memastikan Driver diinisialisasi dengan parameter yang benar."""
         mock_sb_instance = MagicMock()
@@ -22,7 +22,7 @@ class TestDriver(unittest.TestCase):
         )
         self.assertEqual(driver_obj.get_driver(), "mocked_driver_object")
 
-    @patch('core.driver.SB')
+    @patch('src.core.driver.SB')
     def test_driver_open_and_quit(self, mock_sb_class):
         """Memastikan metode open dan quit memanggil fungsi SeleniumBase yang tepat."""
         mock_sb_instance = MagicMock()

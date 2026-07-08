@@ -1,9 +1,9 @@
 import unittest
 from unittest.mock import patch, MagicMock
-from core.neosiak import NeosiakBot
+from src.core.neosiak import NeosiakBot
 
 class TestNeosiakBot(unittest.TestCase):
-    @patch('core.driver.SB')
+    @patch('src.core.driver.SB')
     def test_login_uses_environment_variables(self, mock_sb):
         """Memastikan login mengetikkan kredensial dengan benar menggunakan selector."""
         mock_sb_instance = MagicMock()
@@ -22,7 +22,7 @@ class TestNeosiakBot(unittest.TestCase):
             'input[name="password"]', "test_password")
         mock_driver.click.assert_called_with('button[type="submit"]')
 
-    @patch('core.driver.SB')
+    @patch('src.core.driver.SB')
     @patch('time.sleep')
     def test_open_sidebar_ditutup_executes_js(self, mock_sleep, mock_sb):
         """Memastikan bot menyuntikkan JS (Toast & Overlay) ketika menu target ditutup."""
@@ -55,7 +55,7 @@ class TestNeosiakBot(unittest.TestCase):
         # Verifikasi bahwa sleep dipanggil untuk memberi waktu UI muncul
         self.assertGreater(mock_sleep.call_count, 0)
 
-    @patch('core.driver.SB')
+    @patch('src.core.driver.SB')
     @patch('time.sleep')
     def test_open_sidebar_terbuka_no_js(self, mock_sleep, mock_sb):
         """Memastikan bot tidak menyuntikkan JS jika menu target tidak ditutup."""

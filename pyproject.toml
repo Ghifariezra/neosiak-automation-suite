@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "neosiak-automation-suite"
+version = "0.1.0"
+authors = [
+  { name="Ghifari Ezra Ramadhan", email="iamezraramadhan@gmail.com" },
+]
+description = "Library untuk otomatisasi portal Neosiak Universitas Pancasila"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "seleniumbase",
+    "python-dotenv",
+]
+
+# Tambahkan blok ini untuk package khusus testing/development
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-testdox",
+]
+
+[tool.setuptools]
+packages = ["src", "src.bots", "src.core", "src.utils"]

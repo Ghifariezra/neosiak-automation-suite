@@ -1,11 +1,11 @@
 import unittest
 from unittest.mock import patch, MagicMock
-from bots.absen_uas import AbsenUASBot
+from src.bots.absen_uas import AbsenUASBot
 
 
 class TestAbsenUASBot(unittest.TestCase):
 
-    @patch('core.driver.SB')
+    @patch('src.core.driver.SB')
     def test_find_course_no_table(self, mock_sb):
         """Memastikan bot merespons dengan benar saat tabel tidak ditemukan."""
         bot = AbsenUASBot()
@@ -15,7 +15,7 @@ class TestAbsenUASBot(unittest.TestCase):
         result = bot.find_course("Sistem Informasi Geografis")
         self.assertIsNone(result)
 
-    @patch('core.driver.SB')
+    @patch('src.core.driver.SB')
     def test_find_course_no_input(self, mock_sb):
         """Memastikan bot merespons None jika tidak ada input mata kuliah."""
         bot = AbsenUASBot()
@@ -25,7 +25,7 @@ class TestAbsenUASBot(unittest.TestCase):
         result = bot.find_course("")
         self.assertIsNone(result)
 
-    @patch('core.driver.SB')
+    @patch('src.core.driver.SB')
     @patch('time.sleep')
     def test_find_course_success(self, mock_sleep, mock_sb):
         """Memastikan bot berhasil menemukan mata kuliah dan melakukan klik unduh."""
@@ -73,7 +73,7 @@ class TestAbsenUASBot(unittest.TestCase):
         bot.driver.click.assert_called()
         bot.driver.go_back.assert_called()
 
-    @patch('core.driver.SB')
+    @patch('src.core.driver.SB')
     @patch('time.sleep')
     def test_find_course_failed_not_open(self, mock_sleep, mock_sb):
         """Memastikan bot menangani status file yang belum bisa diunduh (misal: 'Belum dibuka')."""
@@ -115,7 +115,7 @@ class TestAbsenUASBot(unittest.TestCase):
         self.assertEqual(result["status"], "failed")
         self.assertEqual(result["reason"], "Belum dibuka")
 
-    @patch('core.driver.SB')
+    @patch('src.core.driver.SB')
     @patch('time.sleep')
     @patch.object(AbsenUASBot, 'login')
     @patch.object(AbsenUASBot, 'open_sidebar')
@@ -141,7 +141,7 @@ class TestAbsenUASBot(unittest.TestCase):
         mock_find.assert_called_once_with(course_name="Kecerdasan Buatan")
         mock_quit.assert_called_once()
 
-    @patch('core.driver.SB')
+    @patch('src.core.driver.SB')
     @patch('time.sleep')
     @patch.object(AbsenUASBot, 'login')
     @patch.object(AbsenUASBot, 'open_sidebar')

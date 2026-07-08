@@ -1,5 +1,5 @@
 import unittest
-from core.base_menu import BaseMenu
+from src.core.base_menu import BaseMenu
 
 
 class TestBaseMenu(unittest.TestCase):

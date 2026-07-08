@@ -1,8 +1,5 @@
-from bots.layanan_mahasiswa import LayananMahasiswaBot
-from bots.pengisian_krs import PengisianKRSBot
-from utils.display_menu import TerminalMenu
-from bots.absen_uas import AbsenUASBot
-
+from src.bots import AbsenUASBot, LayananMahasiswaBot, PengisianKRSBot
+from src.utils import TerminalMenu
 
 def main():
     daftar_menu = [1, 2]

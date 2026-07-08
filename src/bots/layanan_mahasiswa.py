@@ -1,4 +1,4 @@
-from core.neosiak import NeosiakBot
+from src.core import NeosiakBot
 
 class LayananMahasiswaBot(NeosiakBot):
     """Bot untuk mengakses layanan mahasiswa."""

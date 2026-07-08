@@ -1,0 +1,6 @@
+seleniumbase
+python-dotenv
+
+[dev]
+pytest
+pytest-testdox

@@ -1,5 +1,5 @@
 import os
-from core.base_menu import BaseMenu
+from src.core.base_menu import BaseMenu
 
 
 class TerminalMenu(BaseMenu):

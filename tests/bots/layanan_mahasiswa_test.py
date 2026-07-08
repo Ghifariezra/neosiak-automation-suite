@@ -1,9 +1,9 @@
 import unittest
 from unittest.mock import patch, MagicMock
-from bots.layanan_mahasiswa import LayananMahasiswaBot
+from src.bots.layanan_mahasiswa import LayananMahasiswaBot
 
 class TestLayananMahasiswaBot(unittest.TestCase):
-    @patch('core.driver.SB')
+    @patch('src.core.driver.SB')
     # Memblokir time.sleep agar tes berjalan tanpa henti (instan)
     @patch('time.sleep')
     def test_answer_questions_executes_scripts(self, mock_sleep, mock_sb):
@@ -24,7 +24,7 @@ class TestLayananMahasiswaBot(unittest.TestCase):
         # Verifikasi bahwa time.sleep dipanggil untuk memberi jeda antar stepper
         self.assertGreater(mock_sleep.call_count, 0)
 
-    @patch('core.driver.SB')
+    @patch('src.core.driver.SB')
     def test_go_to_fill_survey_clicks_correct_link(self, mock_sb):
         """Memastikan navigasi form survei menekan elemen a href yang tepat."""
         mock_sb_instance = MagicMock()

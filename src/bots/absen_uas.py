@@ -1,4 +1,4 @@
-from core.neosiak import NeosiakBot
+from src.core import NeosiakBot
 
 class AbsenUASBot(NeosiakBot):
     """Bot untuk mengotomatisasi absen UAS di portal Neosiak."""

@@ -1,5 +1,5 @@
 import unittest
-from core.singleton import SingletonMeta
+from src.core.singleton import SingletonMeta
 
 class DummyClass(metaclass=SingletonMeta):
     def __init__(self):
